@@ -5,7 +5,7 @@ import HslCommunication.Core.Types.OperateResultExOne;
 import HslCommunication.ModBus.ModbusTcpNet;
 
 /**
- * Hello world!
+ * @author IronMan
  */
 public class App {
     /**
