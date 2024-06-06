@@ -1,2 +1,4 @@
-package com.zym.utils;public class PlcUtils {
+package com.zym.utils;
+
+public class PlcUtils {
 }
