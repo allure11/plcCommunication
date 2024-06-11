@@ -13,6 +13,7 @@
     <properties>
         <junit.version>3.8.1</junit.version>
         <HslCommunication.version>3.1.1</HslCommunication.version>
+        <mqtt.version>6.1.0</mqtt.version>
     </properties>
     <dependencies>
         <dependency>
@@ -21,11 +22,34 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.dathlin</groupId>-->
+        <!--            <artifactId>HslCommunication</artifactId>-->
+        <!--            <version>${HslCommunication.version}</version>-->
+        <!--        </dependency>-->
+        <!-- mqtt -->
         <dependency>
-            <groupId>com.github.dathlin</groupId>
-            <artifactId>HslCommunication</artifactId>
-            <version>${HslCommunication.version}</version>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-stream</artifactId>
+            <version>${mqtt.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-mqtt</artifactId>
+            <version>${mqtt.version}</version>
+        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.springframework.boot</groupId>-->
+        <!--            <artifactId>spring-boot-starter-integration</artifactId>-->
+        <!--            <version>${mqtt.version}</version>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.integration</groupId>
+            <artifactId>spring-integration-core</artifactId>
+            <version>${mqtt.version}</version>
+        </dependency>
+
+
     </dependencies>
     <build>
 
