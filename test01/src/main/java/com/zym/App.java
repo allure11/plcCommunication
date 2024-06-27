@@ -13,6 +13,15 @@ public class App {
         testMqttClient();
     }
 
+    public static void testMqttService() {
+        MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
+        mqttConnectOptions.setMqttVersion(3);
+        mqttConnectOptions.setCleanSession(true);
+        MqttClient mqttClient = new MqttClient(mqttConnectOptions);
+
+    }
+
+
     public static void testMqttClient() {
         try {
             MqttClient mqttClient = new MqttClient("tcp://192.168.21.128:1883", "102930", new MemoryPersistence());

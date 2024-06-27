@@ -1,0 +1,43 @@
+version: '3'
+networks:
+  kfk-net:
+services:
+  zookeeper:
+    container_name: zookeeper
+    image: zookeeper:3.9.2
+    ports:
+      - "2181:2181"
+    networks:
+      - kfk-net
+  kafka:
+    container_name: kafka
+    image: kafka3.3.2
+    depends_on:
+      - zookeeper
+    ports:
+      - "9093:9093"
+    links:
+      - zookeeper:zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.21.130:9093
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - kfk-net
+  kafka-map:
+    container_name: kafka-map
+    image:
+      dushixiang/kafka-map:latest
+    depends_on:
+      - kafka
+    ports:
+      - "9001:8080"
+    volumes:
+      - /usr/local/kafka-map/data:/usr/local/kafka-map/data
+    environment:
+      DEFAULT_USERNAME: admin
+      DEFAULT_PASSWORD: admin
+    restart: always
+    networks:
+      - kfk-net
