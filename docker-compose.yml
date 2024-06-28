@@ -9,9 +9,10 @@ services:
       - "2181:2181"
     networks:
       - kfk-net
+    restart: always
   kafka:
     container_name: kafka
-    image: kafka3.3.2
+    image: kafka:3.3.2
     depends_on:
       - zookeeper
     ports:
@@ -25,6 +26,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
     networks:
       - kfk-net
+    restart: always
   kafka-map:
     container_name: kafka-map
     image:
@@ -34,7 +36,7 @@ services:
     ports:
       - "9001:8080"
     volumes:
-      - /usr/local/kafka-map/data:/usr/local/kafka-map/data
+      - /opk/kafka/kafka-map/data:/usr/local/kafka-map/data
     environment:
       DEFAULT_USERNAME: admin
       DEFAULT_PASSWORD: admin
@@ -74,8 +76,7 @@ services:
     container_name: elk_logstash
     restart: always
     volumes:
-      # 挂载logstash的配置文件
-      - /opt/elk/logstash/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+      - /opt/elk/logstash/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf # 挂载logstash的配置文件
     depends_on:
       - elasticsearch # kibana在elasticsearch启动之后再启动
     links:
