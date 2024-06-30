@@ -19,6 +19,16 @@ public class App {
         mqttConnectOptions.setCleanSession(true);
         MqttClient mqttClient = new MqttClient(mqttConnectOptions);
 
+        String a = "{emqx_plugin_kafka, [ \\\n" +
+                "                   {kafka_address_list, [{\\\"$KAFKA_ADDRESS\\\", $KAFKA_PORT }]}, \\\n" +
+                "                   {kafka_config, [ \\\n" +
+                "                       {reconnect_cool_down_seconds, 10}, \\\n" +
+                "                       {query_api_versions, true} \\\n" +
+                "                   ]}, \\\n" +
+                "                   {topic, <<\\\"$TOPIC_NAME\\\">>}, \\\n" +
+                "                   {publish_base64, false} \\\n" +
+                "               ]}. "
+
     }
 
 
